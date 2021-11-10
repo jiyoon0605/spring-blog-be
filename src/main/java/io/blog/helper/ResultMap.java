@@ -5,10 +5,11 @@ import java.util.Map;
 
 public class ResultMap {
 
-    public static Map<String, Object> getSuccessMap(String msg) {
+    public static Map<String, Object> getSuccessMap(String msg, Object data) {
         Map<String, Object> successMap = new HashMap<>();
         Map<String, Object> successResult = new HashMap<>();
         successResult.put("message", msg);
+        successResult.put("data", data);
         successMap.put("success", true);
         successMap.put("message", "Request was succeed.");
         successMap.put("result", successResult);

@@ -10,9 +10,16 @@ import java.util.Map;
 
 @Mapper
 public interface AuthMapper {
-    public void createAccount(UserVO user) ;
+    public void createAccount(UserVO user);
+
     public Object emailCheck(@Param("email") String email);
+
     public Object nicknameCheck(@Param("nickname") String nickname);
-    public List<Map<String,Object>> viewAllUsers();
+
+    public List<Map<String, Object>> viewAllUsers();
+
+    public List<Map<String, Object>> findUser(@Param("email") String email);
+
+    public List<Map<String, Object>> login(@Param("email") String email);
 
 }

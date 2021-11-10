@@ -19,4 +19,14 @@
         SELECT *
         FROM USERS
     </select>
+    <select id="findUser" resultType="map" parameterType="string">
+        SELECT *
+        FROM USERS
+        WHERE EMAIL = #{email}
+    </select>
+    <select id="login" resultType="map" parameterType="string">
+        SELECT EMAIL, PASSWORD, ID
+        FROM USERS
+        WHERE EMAIL = #{email}
+    </select>
 </mapper>

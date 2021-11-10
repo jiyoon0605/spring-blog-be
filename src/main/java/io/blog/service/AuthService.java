@@ -10,5 +10,7 @@ public interface AuthService {
 
     public boolean duplicationCheck(String email, String nickname);
 
-    public List<Map<String,Object>>  viewAllUsers();
+    public List<Map<String, Object>> viewAllUsers();
+
+    public Map<String,Object> login(String email,String password);
 }
