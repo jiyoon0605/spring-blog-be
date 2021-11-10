@@ -1,7 +1,7 @@
 package io.blog.controller;
 
 import io.blog.service.TestService;
-import io.blog.vo.TestVO;
+import io.blog.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,9 +17,21 @@ public class HomeController {
     private TestService testService;
 
     @RequestMapping("/test")
-    public List<TestVO> test(Model model) {
-        // model.addAllAttributes("viewAll",testService.viewAll());
-        testService.insert();
+    public List<UserVO> test(Model model) {
+        testService.insert("testName");
+        //testService.delete();
+        return testService.viewAll();
+    }
+
+    @RequestMapping("/delete")
+    public List<UserVO> delete() {
+        testService.delete(1);
+        return testService.viewAll();
+    }
+
+
+    @RequestMapping("/get")
+    public List<UserVO> get(Model model) {
         return testService.viewAll();
     }
 }

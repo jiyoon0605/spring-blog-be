@@ -3,7 +3,7 @@ package io.blog.service.impl;
 
 import io.blog.mapper.TestMapper;
 import io.blog.service.TestService;
-import io.blog.vo.TestVO;
+import io.blog.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,14 +21,18 @@ public class TestServiceImpl implements TestService {
     }
 
     @Override
-    public List<TestVO> viewAll() {
+    public List<UserVO> viewAll() {
         return mapper.viewAll();
     }
 
     @Override
-    public void insert() {
-        System.out.println("insert");
-        mapper.insert();
+    public void insert(String name) {
+        mapper.insert(name);
+    }
+
+    @Override
+    public void delete(int id) {
+        mapper.delete(id);
     }
 
 }
