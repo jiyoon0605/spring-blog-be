@@ -22,4 +22,9 @@ public class PostController {
     public List<Map<String, Object>> viewPostList() {
         return service.viewAllPost();
     }
+
+    @GetMapping("/detail")
+    public Map<String, Object> viewDetailPost() {
+        return service.viewDetailPost(0);
+    }
 }

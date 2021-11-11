@@ -2,6 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="io.blog.mapper.PostMapper">
     <select id="viewAllPost" resultType="java.util.Map">
-        SELECT * FROM POSTS
+        SELECT *
+        FROM POSTS
+    </select>
+    <select id="viewDetailPost" resultType="java.util.Map">
+        SELECT *
+        FROM POSTS,
+             USERS
+        WHERE POSTS.USER_ID = USERS.ID
+          AND POSTS.ID = #{id}
     </select>
 </mapper>
