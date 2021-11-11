@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 import java.util.Map;
 
-@Mapper
+
 public interface AuthMapper {
     public void createAccount(UserVO user);
 

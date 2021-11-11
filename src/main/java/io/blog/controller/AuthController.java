@@ -21,7 +21,7 @@ public class AuthController {
 
 
     @PostMapping("/user")
-    public Map<String, Object> signUp(@RequestBody UserVO user) {
+    public Map<String, Object> createAccount(@RequestBody UserVO user) {
         boolean result = authService.duplicationCheck(user.getEMAIL(), user.getNICKNAME());
         if (result) {
             Map<String, Object> map = authService.createAccount(user);

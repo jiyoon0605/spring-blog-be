@@ -36,10 +36,11 @@ public class JwtUtil {
                     .parseClaimsJwt(auth)
                     .getBody();
             claimMap = claims;
+            claimMap.put("success",true);
         } catch (ExpiredJwtException e) {
-            System.out.println("===expir===");
+            claimMap.put("success",false);
         } catch (Exception e) {
-            System.out.println("===error===");
+            claimMap.put("success",false);
         }
         return claimMap;
     }

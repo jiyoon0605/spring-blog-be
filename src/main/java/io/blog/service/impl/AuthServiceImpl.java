@@ -62,17 +62,15 @@ public class AuthServiceImpl implements AuthService {
         Map<String, Object> result = new HashMap<>();
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String securePw = encoder.encode(password);
 
         if (data.size() <= 0) {
             result.put("success", false);
             result.put("message", "Account does not exist");
-        } else if (data.get(0).get("PASSWORD") != securePw) {
+        } else if (!encoder.matches(password, data.get(0).get("PASSWORD").toString())) {
             result.put("success", false);
             result.put("message", "Passwords do not match");
         } else {
             result.put("success", true);
-            System.out.println(jwtKey);
             JwtUtil jwtUtil = new JwtUtil();
             Map<String, Object> userData = data.get(0);
             String token = jwtUtil.createToken(
