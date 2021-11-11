@@ -10,7 +10,6 @@ public class ResultMap {
         Map<String, Object> successResult = new HashMap<>();
         successResult.put("message", msg);
         successResult.put("data", data);
-        successMap.put("success", true);
         successMap.put("message", "Request was succeed.");
         successMap.put("result", successResult);
         return successMap;
@@ -19,17 +18,12 @@ public class ResultMap {
 
     public static Map<String, Object> getFailureMap(String msg) {
         Map<String, Object> failureMap = new HashMap<>();
-        Map<String, Object> failureresult = new HashMap<>();
-        failureresult.put("message", msg);
-        failureMap.put("success", false);
+        Map<String, Object> failureResult = new HashMap<>();
+        failureResult.put("message", msg);
         failureMap.put("message", "Request was failed.");
-        failureMap.put("result", failureresult);
+        failureMap.put("result", failureResult);
         return failureMap;
 
     }
-//    public static Map<String,Object> getFailureMap(){
-//        Map<String,Object> map=new HashMap<>();
-//
-//    }
 
 }

@@ -2,13 +2,14 @@ package io.blog.controller;
 
 import io.blog.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Map;
+
+import static io.blog.helper.ResultMap.getSuccessMap;
 
 @CrossOrigin("*")
 @RestController
@@ -19,12 +20,13 @@ public class PostController {
     PostService service;
 
     @GetMapping("/list")
-    public List<Map<String, Object>> viewPostList() {
-        return service.viewAllPost();
+    public Map<String, Object> viewPostList(HttpServletRequest request, HttpServletResponse response) {
+        System.out.println(request);
+        return getSuccessMap("",service.viewAllPost());
     }
 
-    @GetMapping("/detail")
-    public Map<String, Object> viewDetailPost() {
-        return service.viewDetailPost(0);
+    @GetMapping("/{id}")
+    public Map<String, Object> viewDetailPost(@PathVariable("id")int id) {
+        return getSuccessMap("",service.viewDetailPost(id));
     }
 }

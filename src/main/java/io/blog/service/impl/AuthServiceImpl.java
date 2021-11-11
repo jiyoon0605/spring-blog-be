@@ -57,7 +57,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public Map<String, Object> login(String email, String password) {
+    public Map<String, Object> login(String email, String password){
         List<Map<String, Object>> data = authMapper.login(email);
         Map<String, Object> result = new HashMap<>();
 
