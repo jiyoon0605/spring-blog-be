@@ -23,10 +23,10 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Map<String, Object> viewDetailPost(int id) {
-        List<Map<String, Object>> result = postMapper.viewDetailPost(id);
-        result.forEach(map -> map.put("CREATED_AT", map.get("CREATED_AT").toString()));
-        return result.get(0);
+    public Map<String, Object> viewDetailPost(int id) throws IndexOutOfBoundsException {
+        Map<String, Object> result = postMapper.viewDetailPost(id).get(0);
+        result.put("CREATED_AT", result.get("CREATED_AT").toString());
+        return result;
     }
 
 

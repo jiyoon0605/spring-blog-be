@@ -54,6 +54,6 @@ public class AuthController {
     @ExceptionHandler(AuthorizationServiceException.class)
     public Map<String, Object> authorizationError(Exception e, HttpServletResponse response) {
         response.setStatus(401);
-        return ResultMap.getFailureMap(e.getMessage());
+        return ResultMap.getRequestFailureMap(e.getMessage());
     }
 }

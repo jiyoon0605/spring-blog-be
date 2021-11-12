@@ -5,6 +5,6 @@ import java.util.Map;
 
 public interface PostService {
     public List<Map<String,Object>> viewAllPost();
-    public Map<String,Object> viewDetailPost(int id);
+    public Map<String,Object> viewDetailPost(int id) throws IndexOutOfBoundsException;
 
 }

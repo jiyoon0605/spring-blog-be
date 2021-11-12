@@ -6,24 +6,35 @@ import java.util.Map;
 public class ResultMap {
 
     public static Map<String, Object> getSuccessMap(String msg, Object data) {
-        Map<String, Object> successMap = new HashMap<>();
         Map<String, Object> successResult = new HashMap<>();
         successResult.put("message", msg);
         successResult.put("data", data);
-        successMap.put("message", "Request was succeed.");
-        successMap.put("result", successResult);
-        return successMap;
+        return getMapTemplate("Request was succeed", successResult, 200);
 
     }
 
-    public static Map<String, Object> getFailureMap(String msg) {
-        Map<String, Object> failureMap = new HashMap<>();
+    public static Map<String, Object> getRequestFailureMap(String msg) {
         Map<String, Object> failureResult = new HashMap<>();
         failureResult.put("message", msg);
-        failureMap.put("message", "Request was failed.");
-        failureMap.put("result", failureResult);
-        return failureMap;
+        return getMapTemplate("Request was failed.", failureResult, 401);
 
+    }
+
+    public static Map<String, Object> getBadRequestMap(String msg) {
+        Map<String, Object> badRequestResult = new HashMap<>();
+        badRequestResult.put("message", msg);
+        return getMapTemplate("Bad Request", badRequestResult, 404);
+
+    }
+
+    public static Map<String, Object> getMapTemplate(String msg1, Map<String, Object> data, int status) {
+        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> result = new HashMap<>();
+        result.put("data", data);
+        map.put("message", msg1);
+        map.put("result", result);
+        map.put("status", status);
+        return map;
     }
 
 }
