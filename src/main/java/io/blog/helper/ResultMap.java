@@ -27,12 +27,15 @@ public class ResultMap {
 
     }
 
+    public static Map<String,Object> getUnauthorizedMap(String msg){
+        Map<String, Object> unauthorizedResult = new HashMap<>();
+        unauthorizedResult.put("message", msg);
+        return getMapTemplate("Unauthorized", unauthorizedResult, 401);
+    }
     public static Map<String, Object> getMapTemplate(String msg1, Map<String, Object> data, int status) {
         Map<String, Object> map = new HashMap<>();
-        Map<String, Object> result = new HashMap<>();
-        result.put("data", data);
         map.put("message", msg1);
-        map.put("result", result);
+        map.put("result", data);
         map.put("status", status);
         return map;
     }

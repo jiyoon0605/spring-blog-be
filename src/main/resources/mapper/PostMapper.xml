@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="io.blog.mapper.PostMapper">
+    <insert id="createNewPost" parameterType="io.blog.vo.PostVo">
+        INSERT INTO POSTS(ID,
+                          TITLE,
+                          CONTENTS,
+                          CREATED_AT,
+                          VIEWS,
+                          USER_ID)
+        VALUES ((SELECT MAX(ID) + 1 FROM POSTS),
+                #{TITLE},
+                #{CONTENTS},
+                SYSDATE,
+                0,
+                #{USER_ID})
+    </insert>
     <select id="viewAllPost" resultType="java.util.Map">
         SELECT *
         FROM POSTS
+        ORDER BY CREATED_AT DESC
     </select>
     <select id="viewDetailPost" resultType="java.util.Map">
         SELECT *
@@ -11,5 +26,10 @@
              USERS
         WHERE POSTS.USER_ID = USERS.ID
           AND POSTS.ID = #{id}
+    </select>
+    <select id="getCreatedPost" resultType="java.util.Map">
+        SELECT *
+        FROM POSTS
+        WHERE ID = (SELECT MAX(ID) FROM POSTS)
     </select>
 </mapper>

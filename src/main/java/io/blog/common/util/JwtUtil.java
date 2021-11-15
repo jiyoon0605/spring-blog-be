@@ -33,7 +33,7 @@ public class JwtUtil {
         try {
             Claims claims = Jwts.parser()
                     .setSigningKey(key.getBytes("UTF-8"))
-                    .parseClaimsJwt(auth)
+                    .parseClaimsJws(auth.replace("[", "").replace("]",""))
                     .getBody();
             claimMap = claims;
             claimMap.put("success",true);

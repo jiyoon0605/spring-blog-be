@@ -8,7 +8,6 @@ public class PostVo {
     int ID;
     String TITLE;
     String CONTENTS;
-    String IMAGE_URL;
     DATE CREATED_AT;
     DATE EDITED_AT;
     int VIEWS;
