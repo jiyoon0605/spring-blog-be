@@ -1,6 +1,7 @@
 package io.blog.service.impl;
 
 import io.blog.common.util.JwtUtil;
+import io.blog.exception.UnauthorizedException;
 import io.blog.mapper.PostMapper;
 import io.blog.service.PostService;
 import io.blog.vo.PostVo;
@@ -25,30 +26,33 @@ public class PostServiceImpl implements PostService {
     @Override
     public List<Map<String, Object>> viewAllPost() {
         List<Map<String, Object>> result = postMapper.viewAllPost();
-        result.forEach(map -> map.put("CREATED_AT", map.get("CREATED_AT").toString()));
         return result;
     }
 
     @Override
     public Map<String, Object> viewDetailPost(int id) throws IndexOutOfBoundsException {
         Map<String, Object> result = postMapper.viewDetailPost(id).get(0);
-        result.put("CREATED_AT", result.get("CREATED_AT").toString());
         return result;
     }
 
     @Override
-    public Map<String, Object> createNewPost(PostVo postVo, String token) throws UnsupportedEncodingException {
+    public Map<String, Object> createNewPost(PostVo postVo, String token) throws UnauthorizedException {
         JwtUtil jwtUtil = new JwtUtil();
         try {
             int id = Integer.parseInt(jwtUtil.verifyJWT(jwtKey, token).get("id").toString());
             postVo.setUSER_ID(id);
             postMapper.createNewPost(postVo);
             Map<String, Object> createdPost = postMapper.getCreatedPost().get(0);
-            createdPost.put("CREATED_AT", createdPost.get("CREATED_AT").toString());
             return createdPost;
         } catch (UnsupportedEncodingException e) {
-            throw new UnsupportedEncodingException();
+            throw new UnauthorizedException();
         }
+    }
+
+    @Override
+    public void increaseView(int id) {
+        System.out.println(id);
+        postMapper.increaseView(id);
     }
 
 

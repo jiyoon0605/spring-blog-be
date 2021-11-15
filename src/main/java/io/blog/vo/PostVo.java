@@ -8,8 +8,8 @@ public class PostVo {
     int ID;
     String TITLE;
     String CONTENTS;
-    DATE CREATED_AT;
-    DATE EDITED_AT;
+    String CREATED_AT;
+    String EDITED_AT;
     int VIEWS;
     int USER_ID;
 }

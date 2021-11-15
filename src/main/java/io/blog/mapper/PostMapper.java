@@ -15,4 +15,5 @@ public interface PostMapper {
 
     public List<Map<String,Object>> getCreatedPost();
 
+    public void increaseView(@Param("id") int id);
 }

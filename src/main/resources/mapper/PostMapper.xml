@@ -11,10 +11,17 @@
         VALUES ((SELECT MAX(ID) + 1 FROM POSTS),
                 #{TITLE},
                 #{CONTENTS},
-                SYSDATE,
+                TO_CHAR(SYSDATE, 'yyyy-mm-dd(DY) PM HH:MI:SS'),
                 0,
                 #{USER_ID})
     </insert>
+
+    <update id="increaseView" parameterType="int">
+        UPDATE POSTS
+        SET VIEWS = VIEWS + 1
+        WHERE ID = #{id}
+    </update>
+
     <select id="viewAllPost" resultType="java.util.Map">
         SELECT *
         FROM POSTS
