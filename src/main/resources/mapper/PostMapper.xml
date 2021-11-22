@@ -11,7 +11,7 @@
         VALUES ((SELECT MAX(ID) + 1 FROM POSTS AS POSTS_TABLE),
                 #{TITLE},
                 #{CONTENTS},
-                DATE_FORMAT(NOW(), '%Y-%m-%d(%W) %p %T', 'NLS_DATE_LANGUAGE=ENGLISH'),
+                DATE_FORMAT(NOW(), '%Y-%m-%d(%W) %T', 'NLS_DATE_LANGUAGE=ENGLISH'),
                 0,
                 #{USER_ID})
     </insert>
