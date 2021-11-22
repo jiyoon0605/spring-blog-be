@@ -13,7 +13,7 @@
     </select>
     <insert id="createAccount" parameterType="io.blog.vo.UserVO">
         INSERT INTO USERS(ID, USERNAME, NICKNAME, EMAIL, PASSWORD)
-        VALUES ((SELECT MAX(ID) + 1 FROM USERS), #{USERNAME}, #{NICKNAME}, #{EMAIL}, #{PASSWORD})
+        VALUES ((SELECT MAX(ID) + 1 FROM USERS AS USERS_TABLE), #{USERNAME}, #{NICKNAME}, #{EMAIL}, #{PASSWORD})
     </insert>
     <select id="viewAllUsers" resultType="map">
         SELECT *

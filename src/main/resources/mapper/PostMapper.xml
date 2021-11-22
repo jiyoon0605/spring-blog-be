@@ -8,10 +8,10 @@
                           CREATED_AT,
                           VIEWS,
                           USER_ID)
-        VALUES ((SELECT MAX(ID) + 1 FROM POSTS),
+        VALUES ((SELECT MAX(ID) + 1 FROM POSTS AS POSTS_TABLE),
                 #{TITLE},
                 #{CONTENTS},
-                TO_CHAR(SYSDATE, 'yyyy-mm-dd(DY) PM HH:MI:SS'),
+                DATE_FORMAT(NOW(), 'yyyy-mm-dd(DY) PM HH:MI:SS'),
                 0,
                 #{USER_ID})
     </insert>
@@ -37,6 +37,6 @@
     <select id="getCreatedPost" resultType="java.util.Map">
         SELECT *
         FROM POSTS
-        WHERE ID = (SELECT MAX(ID) FROM POSTS)
+        WHERE ID = (SELECT MAX(ID) FROM POSTS AS POSTS_TABLE)
     </select>
 </mapper>
